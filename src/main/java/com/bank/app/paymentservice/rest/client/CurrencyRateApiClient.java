@@ -36,7 +36,6 @@ public class CurrencyRateApiClient {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }*/
-        log.info("client request was send");
         String json = """
                 {
                   "change": true,

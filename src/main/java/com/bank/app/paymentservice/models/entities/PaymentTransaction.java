@@ -30,7 +30,7 @@ public class PaymentTransaction {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "account_info_id", columnDefinition = "varchar(20) not null")
+    @JoinColumn(name = "account_info_id")
     private AccountInfo accountFrom;
 
     @Column(name = "account_to", columnDefinition = "varchar(20) not null")
