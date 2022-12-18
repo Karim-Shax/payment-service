@@ -4,7 +4,7 @@ import com.bank.app.paymentservice.models.dto.PaymentTransactionRequestDto;
 import com.bank.app.paymentservice.models.entities.PaymentTransaction;
 import com.bank.app.paymentservice.models.enums.CurrencyShortName;
 import com.bank.app.paymentservice.models.enums.ExpenseCategory;
-import com.bank.app.paymentservice.rest.client.CurrencyRateApiClient;
+import com.bank.app.paymentservice.rest.client.CurrencyRateApiRestClient;
 import com.bank.app.paymentservice.util.DateTimeFormatter;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Assertions;
@@ -22,11 +22,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@MockBeans({@MockBean(CurrencyRateApiClient.class)})
+@MockBeans({@MockBean(CurrencyRateApiRestClient.class)})
 public class InternalRestControllerTest extends SpringSimpleContextTest {
 
     @Autowired
-    private CurrencyRateApiClient client;
+    private CurrencyRateApiRestClient client;
 
     @Test
     @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = {

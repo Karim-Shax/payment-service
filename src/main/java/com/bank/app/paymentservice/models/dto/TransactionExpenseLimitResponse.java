@@ -3,10 +3,13 @@ package com.bank.app.paymentservice.models.dto;
 import com.bank.app.paymentservice.models.enums.CurrencyShortName;
 import com.bank.app.paymentservice.models.enums.ExpenseCategory;
 import com.bank.app.paymentservice.util.DateTimeFormatter;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
+
+@Schema(description = "Структура данных ответа клиенту, информация о транзакции с лимитом")
 public class TransactionExpenseLimitResponse {
     private String accountFrom;
     private String accountTo;

@@ -2,7 +2,7 @@ package com.bank.app.paymentservice.service;
 
 
 import com.bank.app.paymentservice.models.converter.CurrencyMapper;
-import com.bank.app.paymentservice.rest.client.CurrencyRateApiClient;
+import com.bank.app.paymentservice.rest.client.CurrencyRateApiRestClient;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -12,9 +12,9 @@ import java.math.RoundingMode;
 public class CurrencyExchangerService {
 
     private final CurrencyMapper currencyMapper;
-    private final CurrencyRateApiClient rateApiClient;
+    private final CurrencyRateApiRestClient rateApiClient;
 
-    public CurrencyExchangerService(CurrencyMapper currencyMapper, CurrencyRateApiClient rateApiClient) {
+    public CurrencyExchangerService(CurrencyMapper currencyMapper, CurrencyRateApiRestClient rateApiClient) {
         this.currencyMapper = currencyMapper;
         this.rateApiClient = rateApiClient;
     }

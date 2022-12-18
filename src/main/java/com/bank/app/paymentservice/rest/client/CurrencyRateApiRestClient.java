@@ -22,7 +22,7 @@ import java.util.Objects;
 
 @Service
 @Slf4j
-public class CurrencyRateApiClient {
+public class CurrencyRateApiRestClient {
     @Autowired
     private Environment env;
 

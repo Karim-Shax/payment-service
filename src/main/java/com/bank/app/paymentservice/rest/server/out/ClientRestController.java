@@ -9,6 +9,8 @@ import com.bank.app.paymentservice.models.enums.ExpenseCategory;
 import com.bank.app.paymentservice.service.abstracts.AccountInfoService;
 import com.bank.app.paymentservice.service.abstracts.ExpenseLimitService;
 import com.bank.app.paymentservice.service.abstracts.PaymentTransactionService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +26,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/client")
+@Tag(
+        name = "API для клиента",
+        description = "Все методы доступные клиенту, для операции с транзакциями и лимитами"
+)
 public class ClientRestController {
 
     private PaymentTransactionService paymentTransactionService;
@@ -37,6 +43,7 @@ public class ClientRestController {
     }
 
     @GetMapping("/transaction/all")
+    @Operation(summary = "Получить все транзакции по номеру счета")
     public ResponseEntity<List<TransactionExpenseLimitResponse>> getAllPaymentsByAccount(@RequestHeader String account) {
         if (!accountInfoService.isExistByAccount(account)) {
             throw new NotFoundException("Аккаунт по номеру " + account + " не найден");
@@ -45,6 +52,7 @@ public class ClientRestController {
     }
 
     @GetMapping("/transaction/{limitExceeded}")
+    @Operation(summary = "Получить все транзакции по номеру счета и флагу превышения лимита")
     public ResponseEntity<List<TransactionExpenseLimitResponse>> getPaymentsByAccountAndLimitExceeded(@RequestHeader String account,
                                                                                                       @PathVariable Boolean limitExceeded) {
         if (!accountInfoService.isExistByAccount(account)) {
@@ -54,6 +62,7 @@ public class ClientRestController {
     }
 
     @PutMapping("/limit")
+    @Operation(summary = "Установить лимит для аккаунта по его номеру и категории")
     public ResponseEntity<Response> setLimitSumByAccountAndCategory(
             @RequestParam(value = "sum") BigDecimal sum,
             @RequestParam(value = "category") ExpenseCategory expenseCategory,
@@ -67,6 +76,7 @@ public class ClientRestController {
     }
 
     @GetMapping("/limit/all")
+    @Operation(summary = "Получить все лимиты")
     public ResponseEntity<List<ExpenseLimitDto>> getAllLimitsByAccount(@RequestHeader String account) {
         if (!accountInfoService.isExistByAccount(account)) {
             throw new NotFoundException("Аккаунт по номеру " + account + " не найден");
