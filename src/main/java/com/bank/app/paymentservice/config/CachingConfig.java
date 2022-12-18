@@ -1,7 +1,6 @@
 package com.bank.app.paymentservice.config;
 
 import com.datastax.oss.driver.shaded.guava.common.cache.CacheBuilder;
-/*import com.google.common.cache.CacheBuilder;*/
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;

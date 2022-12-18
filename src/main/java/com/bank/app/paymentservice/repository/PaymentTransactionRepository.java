@@ -24,7 +24,7 @@ public interface PaymentTransactionRepository extends JpaRepository<PaymentTrans
                 ex.currency
             ) FROM AccountInfo ac
             INNER JOIN PaymentTransaction pm ON ac.id = pm.accountFrom.id
-            INNER JOIN ExpenseLimit ex ON pm.expenseCategory =ex.expenseCategory
+            INNER JOIN ExpenseLimit ex ON pm.expenseCategory =ex.expenseCategory AND ex.accountInfo.id=pm.accountFrom.id
             WHERE ac.account=:acc
             """)
     List<TransactionExpenseLimitResponse> getAllTransactionsByAccount(@Param("acc") String account);
@@ -42,7 +42,7 @@ public interface PaymentTransactionRepository extends JpaRepository<PaymentTrans
                 ex.currency
             ) FROM AccountInfo ac
             INNER JOIN PaymentTransaction pm ON ac.id = pm.accountFrom.id
-            INNER JOIN ExpenseLimit ex ON pm.expenseCategory =ex.expenseCategory
+            INNER JOIN ExpenseLimit ex ON pm.expenseCategory =ex.expenseCategory AND ex.accountInfo.id=pm.accountFrom.id
             WHERE ac.account=:account AND pm.limitExceeded = :limitEx
             """)
     List<TransactionExpenseLimitResponse> getAllByAccountAndLimitExceeded(@Param("account") String account,

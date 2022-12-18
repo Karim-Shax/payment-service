@@ -47,7 +47,7 @@ public class PaymentTransaction {
     @Column(name = "date_time")
     private ZonedDateTime dateTime;
 
-    @Column(name = "limit_exceeded", columnDefinition = "SMALLINT")
+    @Column(name = "limit_exceeded", columnDefinition = "int2")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean limitExceeded;
 
